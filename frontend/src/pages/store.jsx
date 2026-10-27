@@ -16,7 +16,7 @@ const Store = ({ cart, setCart }) => {
         return res.json();
       })
       .then((data) => {
-        setFruits(data.data); // unwrap { data: [...] }
+        setFruits(Array.isArray(data.data) ? data.data : []);
         setLoading(false);
       })
       .catch((err) => {

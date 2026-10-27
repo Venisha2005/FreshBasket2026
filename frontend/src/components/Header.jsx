@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Header  ({cart}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const cartCount = cart.reduce((acc, item) => acc + (Number(item.quantity) || 0), 0);
 
- 
-  const location = useLocation();
-  
   return (
     
     <header style={styles.header}>

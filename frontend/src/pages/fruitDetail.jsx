@@ -11,7 +11,10 @@ function FruitDetail({ cart, setCart }) {
   useEffect(() => {
     fetch(`http://localhost:5001/fruits/${id}`)
       .then((res) => res.json())
-      .then((data) => setFruit(data))
+      .then((data) => {
+        if (data.error) throw new Error(data.error);
+        setFruit(data);
+      })
       .catch((err) => console.error("Error fetching fruit:", err));
   }, [id]);
 
