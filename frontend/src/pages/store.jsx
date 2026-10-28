@@ -10,7 +10,7 @@ const Store = ({ cart, setCart }) => {
 
   // Fetch fruits from backend
   useEffect(() => {
-    fetch("http://localhost:5001/fruits")
+    fetch("https://freshbasket2026.onrender.com//fruits")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch fruits");
         return res.json();
@@ -31,7 +31,7 @@ const Store = ({ cart, setCart }) => {
     const newItem = {
       ...fruit,
       quantity,
-      image: `http://localhost:5001${fruit.image}`, // ✅ store full path
+      image: `https://freshbasket2026.onrender.com/${fruit.image}`, // ✅ store full path
     };
     setCart((prevCart) => [...prevCart, newItem]);
     alert(`${quantity} x ${fruit.name} added to cart!`);
@@ -70,7 +70,7 @@ const Store = ({ cart, setCart }) => {
               <h2>{fruit.name}</h2>
               {fruit.image && (
                 <img
-                  src={`http://localhost:5001${fruit.image}`}
+                  src={`https://freshbasket2026.onrender.com/${fruit.image}`}
                   alt={fruit.name}
                   style={{ width: "220px", height: "150px" }}
                 />

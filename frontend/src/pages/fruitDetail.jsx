@@ -9,7 +9,7 @@ function FruitDetail({ cart, setCart }) {
 
   // Fetch fruit by id
   useEffect(() => {
-    fetch(`http://localhost:5001/fruits/${id}`)
+    fetch(`https://freshbasket2026.onrender.com/fruits/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.error) throw new Error(data.error);
@@ -24,7 +24,7 @@ function FruitDetail({ cart, setCart }) {
     const newItem = {
       ...fruit,
       quantity,
-      image: `http://localhost:5001${fruit.image}`, // ✅ full path
+      image: `https://freshbasket2026.onrender.com/${fruit.image}`, // ✅ full path
     };
     setCart([...cart, newItem]);
     alert(`${quantity} x ${fruit.name} added to cart!`);
@@ -36,7 +36,7 @@ function FruitDetail({ cart, setCart }) {
     const order = {
       ...fruit,
       quantity,
-      image: `http://localhost:5001${fruit.image}`,
+      image: `https://freshbasket2026.onrender.com/${fruit.image}`, // ✅ full path
     };
 
     // you can send order to backend here if needed
@@ -63,7 +63,7 @@ function FruitDetail({ cart, setCart }) {
         
         {/* Fruit Image */}
         <img
-          src={`http://localhost:5001${fruit.image}`}
+          src={`https://freshbasket2026.onrender.com/${fruit.image}`}
           alt={fruit.name}
           className="w-64 h-64 object-cover mx-auto mb-4 rounded-xl shadow-md border-4 border-gray-200"
         />

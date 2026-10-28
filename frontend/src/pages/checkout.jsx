@@ -41,7 +41,7 @@ export default function Checkout({ cart, setCart }) {
     const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     try {
-      const res = await fetch("http://localhost:5001/order", {
+      const res = await fetch("https://freshbasket2026.onrender.com//order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, cart, total }),
