@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";   // ✅ import Link
+import { Link } from "react-router-dom";
 import "./store.css";
 
 const Store = ({ cart, setCart }) => {
@@ -10,7 +10,7 @@ const Store = ({ cart, setCart }) => {
 
   // Fetch fruits from backend
   useEffect(() => {
-    fetch("https://freshbasket2026.onrender.com//fruits")
+    fetch("https://freshbasket2026.onrender.com/fruits")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch fruits");
         return res.json();
@@ -25,14 +25,16 @@ const Store = ({ cart, setCart }) => {
       });
   }, []);
 
-  // 🛒 Add item to cart
+  // Add item to cart
   const addToCart = (fruit) => {
     const quantity = quantities[fruit._id] || 1;
+
     const newItem = {
       ...fruit,
       quantity,
-      image: `https://freshbasket2026.onrender.com/${fruit.image}`, // ✅ store full path
+      image: `https://freshbasket2026.onrender.com${fruit.image}`,
     };
+
     setCart((prevCart) => [...prevCart, newItem]);
     alert(`${quantity} x ${fruit.name} added to cart!`);
   };
@@ -62,24 +64,30 @@ const Store = ({ cart, setCart }) => {
       >
         {fruits.map((fruit) => (
           <li key={fruit._id} className="fruit-card">
-            {/* ✅ Clickable link to details page */}
             <Link
               to={`/fruit/${fruit._id}`}
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <h2>{fruit.name}</h2>
+
               {fruit.image && (
                 <img
-                  src={`https://freshbasket2026.onrender.com/${fruit.image}`}
+                  src={`https://freshbasket2026.onrender.com${fruit.image.startsWith("/") ? "" : "/"}${fruit.image}`}
                   alt={fruit.name}
-                  style={{ width: "220px", height: "150px" }}
+                  style={{
+                    width: "220px",
+                    height: "150px",
+                    objectFit: "cover",
+                  }}
                 />
               )}
-              {fruit.price && (
+
+              {fruit.price != null && (
                 <p>
                   <strong>Price:</strong> ₹{fruit.price}
                 </p>
               )}
+
               <p>{fruit.description}</p>
             </Link>
 
